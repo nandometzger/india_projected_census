@@ -24,7 +24,7 @@ It is critical to distinguish between **measured census results** and **modeled 
 
 ## 📈 Population Growth Trends
 ![India Population Evolution](docs/india_population_evolution.gif)
-*Saptial Evolution: Detailed density transformation across 700+ districts (2011-2036).*
+*Spatial Evolution: Detailed density transformation across 700+ districts (2011-2036).*
 
 ![National Growth Trend](docs/national_growth_trend.png)
 ![Spatial Growth Dynamics](docs/spatial_growth_dynamics.png)
@@ -94,13 +94,13 @@ Create the temporal evolution GIF shown in the dynamics section:
 python scripts/generate_animation.py
 ```
 
-### 4. Verify Results
+### 5. Verify Results
 Check the spatial join accuracy and population denominator consistency:
 ```powershell
 python scripts/validation.py
 ```
 
-### 5. GIS Integration (QGIS)
+### 6. GIS Integration (QGIS)
 The project generates a optimized GeoPackage at `data/processed/India_Census_Projections_Mapped.gpkg`. You can drag and drop this file directly into QGIS to explore all 2011-2036 density and growth attributes spatially.
 
 ---
