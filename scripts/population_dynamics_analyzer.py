@@ -75,7 +75,7 @@ def generate_advanced_dynamics():
     master.plot(column='density_2025', ax=ax, cmap='magma', norm=LogNorm(vmin=100, vmax=15000),
                 legend=True, 
                 legend_kwds={'label': "Projected People per km²", 'orientation': "horizontal", 'pad': 0.02, 'shrink': 0.6},
-                edgecolor='black', linewidth=0.03)
+                edgecolor='#333333', linewidth=0.1)
     ax.set_title("India Population Density Projection: 2025", fontsize=28, fontweight='bold', pad=30)
     ax.axis('off')
     plt.savefig(os.path.join(docs_dir, "teaser_density_2025.png"), dpi=300, bbox_inches='tight')
