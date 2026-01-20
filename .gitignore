@@ -1,0 +1,18 @@
+# Data
+data/raw/*.csv
+data/raw/*.xlsx
+data/raw/*.geojson
+data/raw/*.tif
+data/raw/*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+env/
+venv/
+.env
+
+# OS
+.DS_Store
+Thumbs.db
