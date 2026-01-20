@@ -64,7 +64,7 @@ def generate_advanced_dynamics():
     # 5. Join to Geodataframe
     gdf['join_key'] = gdf['shapeName'].apply(normalize)
     dist_projections['join_key'] = dist_projections['dist_name'].apply(normalize)
-    master = gdf.merge(dist_projections.drop(columns=['state_name', 'state_key']), on='join_key', how='left')
+    master = gdf.merge(dist_projections.drop(columns=['state_key']), on='join_key', how='left')
 
     # 6. Specialized Visualizations
 
@@ -106,9 +106,30 @@ def generate_advanced_dynamics():
     ax.axis('off')
     plt.savefig(os.path.join(docs_dir, "spatial_growth_dynamics.png"), dpi=300, bbox_inches='tight')
 
-    # Save final results
+    # 7. Export to GeoPackage for QGIS
+    print("Exporting GeoPackage for QGIS...")
+    # Calculate more densities for the GeoPackage
+    for y in ['2011', '2021', '2031', '2036']:
+        master[f'density_{y}'] = master[f'pop_{y}'] / master['area_km2']
+
+    # Final Column Selection & Renaming for QGIS
+    # Re-fetch state names as they were dropped in the merge earlier or were part of dist_projections
+    # Let's ensure state_name is preserved. 
+    # Actually, dist_projections has 'state_name'. Let's check the merge again.
+    # Current merge: master = gdf.merge(dist_projections.drop(columns=['state_name', 'state_key']), on='join_key', how='left')
+    # Let's fix that merge to keep state_name.
+
+    # Save final results as GeoJSON (Existing)
     with open(os.path.join(output_dir, "india_comprehensive_projections.geojson"), 'w', encoding='utf-8') as f:
         f.write(master.drop(columns=['join_key']).to_json())
+
+    # Export to GPKG using pyogrio
+    gpkg_path = os.path.join(output_dir, "India_Census_Projections_Mapped.gpkg")
+    try:
+        master.drop(columns=['join_key']).to_file(gpkg_path, driver="GPKG", engine="pyogrio")
+        print(f"Success: GeoPackage saved to {gpkg_path}")
+    except Exception as e:
+        print(f"Warning: GeoPackage export failed: {e}")
 
     print("Success: Advanced Dynamics and Trends generated.")
 

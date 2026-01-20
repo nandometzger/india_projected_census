@@ -43,7 +43,7 @@ Official **MoHFW State-level Projections** are mapped to individual **Districts*
 india_census_project/
 ├── data/
 │   ├── raw/               # Downloaded CSV, XLSX, and GeoJSON files
-│   └── processed/         # Unified GeoJSON with all temporal projections
+│   └── processed/         # Unified GeoJSON and QGIS GeoPackage (.gpkg)
 ├── scripts/
 │   ├── acquisition.py     # Batch downloader (Python 3)
 │   ├── population_dynamics_analyzer.py # MAIN: Analysis, Disaggregation & Plotting
@@ -68,7 +68,7 @@ python -m venv venv
 .\venv\Scripts\activate
 pip install -r requirements.txt
 ```
-*Required libraries: `pandas`, `geopandas`, `matplotlib`, `openpyxl`, `requests`.*
+*Required libraries: `pandas`, `geopandas`, `matplotlib`, `openpyxl`, `requests`, `pyogrio`.*
 
 ### 2. Data Acquisition
 Download the raw datasets from mirrors (MoHFW, Harvard Dataverse, geoBoundaries):
@@ -88,7 +88,8 @@ python scripts/population_dynamics_analyzer.py
 Check the spatial join accuracy and population denominator consistency:
 ```powershell
 python scripts/validation.py
-```
+### 5. GIS Integration (QGIS)
+The project generates a optimized GeoPackage at `data/processed/India_Census_Projections_Mapped.gpkg`. You can drag and drop this file directly into QGIS to explore all 2011-2036 density and growth attributes spatially.
 
 ---
 

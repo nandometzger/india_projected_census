@@ -3,3 +3,4 @@ requests
 openpyxl
 xlrd
 numpy
+pyogrio
