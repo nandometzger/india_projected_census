@@ -22,6 +22,20 @@ It is critical to distinguish between **measured census results** and **modeled 
 
 ---
 
+## ✅ Validation & Sanity Check
+
+To ensure the reliability of the modeling, we cross-checked the population denominators derived from the **IPI District Data (2021)** against the **Official MoHFW 2021 Projections**.
+
+| Metric | Value |
+| :--- | :--- |
+| **Official MoHFW 2021 Projection** | 1,363,006,000 |
+| **IPI Derived Total Population** | 1,362,962,963 |
+| **Percentage Discrepancy** | **-0.003%** |
+
+This extremely low gap confirms that the underlying population weights used in this repository are perfectly aligned with official national targets, providing a high degree of confidence in the disaggregated district-level outputs.
+
+---
+
 ## 📈 Population Growth Trends
 ![India Population Evolution](docs/india_population_evolution.gif)
 *Spatial Evolution: Detailed density transformation across 700+ districts (2011-2036).*
